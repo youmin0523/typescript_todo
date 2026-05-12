@@ -17,7 +17,9 @@ const todoSlice = createSlice({
       );
       state.todos[index] = { ...state.todos[index], ...action.payload };
     },
-    deleteTodo: () => {},
+    deleteTodo: (state, action: { payload: string }) => {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+    },
     completeTodo: (state, action: { payload: string }) => {
       const index = state.todos.findIndex((todo) => todo.id === action.payload);
       const [completeTodo] = state.todos.splice(index, 1); // 예시: [1,2,3,4,5].splice(2,1) -> [1,2,4,5]

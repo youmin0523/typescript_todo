@@ -3,7 +3,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Checkbox } from '../ui/checkbox';
 import { Delete, Pencil, Save } from 'lucide-react';
-import { completeTodo, updateTodo } from '../../../redux/slices/todoSlice';
+import {
+  completeTodo,
+  deleteTodo,
+  updateTodo,
+} from '../../../redux/slices/todoSlice';
 import { toast } from 'sonner';
 
 const TodoContent = ({ todo }: { todo: Todo }) => {
@@ -49,7 +53,7 @@ const TodoContent = ({ todo }: { todo: Todo }) => {
       ) : (
         <div className="flex items-center gap-2">
           <Pencil size={20} onClick={() => setEditable(!editable)} />
-          <Delete size={20} />
+          <Delete size={20} onClick={() => dispatch(deleteTodo(todo.id))} />
         </div>
       )}
     </div>
